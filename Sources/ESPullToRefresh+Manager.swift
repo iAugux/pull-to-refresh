@@ -80,8 +80,11 @@ open class ESRefreshDataManager {
     
     open func isExpired(forKey key: String, block: ((Bool) -> ())?) {
         DispatchQueue.global().async {
-            [unowned self] in
-            let result = self.isExpired(forKey: key)
+            [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            let result = weakSelf.isExpired(forKey: key)
             DispatchQueue.main.async(execute: {
                 block?(result)
             })

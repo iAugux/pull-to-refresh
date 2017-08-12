@@ -71,26 +71,26 @@ Add default pull-to-refresh
 
 ``` swift
 self.tableView.es_addPullToRefresh {
-	[unowned self] in
+	[weak self] in
 	/// Do anything you want...
 	/// ...
 	/// Stop refresh when your job finished, it will reset refresh footer if completion is true
-	self.tableView.es_stopPullToRefresh(completion: true)
+	self?.tableView.es_stopPullToRefresh(completion: true)
 	/// Set ignore footer or not
-	self.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
+	self?.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
 }
 ```
 
 Add default infinite-scrolling
 ``` swift
 self.tableView.es_addInfiniteScrolling {
-	[unowned self] in
+	[weak self] in
 	/// Do anything you want...
 	/// ...
 	/// If common end
-	self.tableView.es_stopLoadingMore()
+	self?.tableView.es_stopLoadingMore()
 	/// If no more data
-	self.tableView.es_noticeNoMoreData()
+	self?.tableView.es_noticeNoMoreData()
 }
 ```
 
